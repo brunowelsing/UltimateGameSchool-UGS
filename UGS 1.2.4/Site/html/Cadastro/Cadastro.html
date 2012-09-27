@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="stdtheme.css" />
+		<title>
+			UGS - História
+		</title>
+		<style type="text/css"> 
+		body
+		{   
+			font-family:"Century Gothic";
+			margin-bottom:0%;
+			margin-left:auto;
+			margin-right:auto;
+			color:#000000;
+		}
+		</style>
+		<script>
+		function ConcluirCadastro()
+		{
+			window.location='url' 
+		}	
+		</script>
+	</head>
+	<body>		
+		<section>
+			<header>
+				<h1> 
+					Cadastre-se já:
+				</h1>
+			</header>
+			
+			<form method="post" action="mailto:equiperocket.staff@gmail.com">
+				<p>Preencha o formulário abaixo para se cadastrar:</p>
+				<label for="login">Login:</label> <!-- log in/ nome de usuário -->
+				<input type="text" id="login" name="login" maxlength=20 /><br/>
+				<label for="email">email:</label> <!-- email -->
+				<input type="text" id="email" name="email"/><br/>
+				<label for="password">Senha:</label> <!-- senha -->
+				<input type="password" id="password" name="password"/><br/>
+				<label for="gender">Escolha o sexo do seu icone de personagem:</label><br/>
+				Feminino<input id="gender" name="gender" type="radio" value="yes"/><!-- opção de botões para genero do icone -->
+				Masculino<input id="gender" name="gender" type="radio" value="no"/><br/>
+				<input title="Continuar" value="Continuar >>" type="submit"><!--	Botão com evento "Enviar Login" -->
+				<p id="ConcluirCadastro">Clique para continuar:</p>
+				<INPUT type="button" value="Continuar >>" name="Continuar_teste" onclick="window.location='html/Cadastro/Cadastro_page2.html'"></button><br> 
+				<!-- window.location='url' -->
+			</form>
+
+			<!-- obs IMPORTANTE: estou com dois botões de continuar propositalmente, pretendo fundir suas funções em breve para que após a conclusão do login, carregue a página "Cadastro_page2" não apagar os botões-->
+				
+			</article>
+		</section>
+	</body>
+</html>

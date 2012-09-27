@@ -1,0 +1,167 @@
+/*html{overflow-y:scroll;}*/
+
+@font-face
+{
+	font-family: System;
+	src: url('ASI_System.FON');
+}
+
+body
+{   
+	font-size:15px;
+	font-family:"Century Gothic";
+	margin-bottom:0%;
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url('images/caderno.png');
+	background-size:100%;
+	/*-moz-background-size:100% 110%; /* Firefox 3.6 */
+	background-repeat:repeat-y;
+	padding:0;
+	height:0%;
+}
+
+div.left_column
+{
+	width:20%;
+	margin:2%;
+	float:left;
+}
+
+div.main_column
+{
+	width:70%;
+	margin:2%;
+	float:left;
+}
+
+div.footer 
+{	
+	text-align:center;
+	font-size:10px;
+	color:#ffffff;
+	margin:0%;
+	height:auto;
+	background-color:transparent;
+}
+
+div
+{
+	width:100%;
+}
+
+iframe
+{
+	margin:0px;
+}
+/*
+div.button_Right_box putting div.
+{
+	border:2px solid #3399FF;
+	padding:10px 30px; 
+	background:#A3FFA3;
+	width:110px;
+	height:10px;
+	border-radius:2px;
+	-moz-border-radius:2px;
+}
+
+div.button_Right_box:hover making button_box turn around
+{
+	border:2px solid #3399FF;
+	padding:20px 50px; 
+	background:#80E680;
+	width:110px;
+	height:10px;
+	border-radius:10px;
+}
+*/
+
+img.background_img
+{
+	position:absolute;
+	z-index:-1;
+}
+
+img.button_register:hover /*making button_img_box grow up*/
+{
+	image:url(images/Cadastrar2.png);
+}
+
+img.button_play:hover /*making button_img_box grow up*/
+{
+	image:url(images/Jogar2.png)
+}
+
+img.button_left_box
+{
+	width:190px;
+	height:30px;
+}
+
+img.button_left_box:hover /*making button_img_box grow up*/
+{
+	width:215px;
+	height:35px;
+}
+
+img
+{
+	border:0
+}
+
+section
+{
+	border-width:15px;
+	width:89%;
+	padding:0px 20px;
+	/*#round*/
+	-moz-border-image:url(images/border.png) 30 30 round; /* Firefox */
+	-webkit-border-image:url(images/border.png) 30 30 round; /* Safari and Chrome */
+	-o-border-image:url(images/border.png) 30 30 round; /* Opera */
+	border-image:url(images/border.png) 26 35 round;
+}
+
+table,th,td,input,textarea
+{
+	font-size:100%;
+}
+
+h1,h2,h3,h4,h5,h6,table,td,th,ul,ol,textarea,input
+{   
+	font-family:"Century Gothic";
+	margin-bottom:0%;
+	margin-left:auto;
+	margin-right:auto;
+	color:#000000;
+}
+
+h1 {font-size:190%;margin-top:0px;}
+h2 {font-size:160%;margin-top:10px;margin-bottom:10px;font-weight:normal}
+h3 {font-size:120%;font-weight:normal}
+h4 {font-size:100%;}
+h5 {font-size:90%;}
+h6 {font-size:80%;}
+
+/*
+a
+{
+	font-weight:bold
+}
+
+a:link {color:#3250AA;}    /* unvisited link 
+a:visited {color:#3E64D4;} /* visited link 
+a:hover {color:#00B85C;}   /* mouse over link
+a:active {color:#0000FF;}  /* selected link 
+*/
+
+#wrap
+{
+   width:1024px;
+}
+@media only screen and (orientation:portrait){
+/* portrait styles here */
+#wrap
+{
+      width:768px;
+}

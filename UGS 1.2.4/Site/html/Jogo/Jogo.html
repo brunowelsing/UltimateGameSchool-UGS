@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../theme.css" />
+		
+		<title>
+			Jogo - UGS
+		</title>
+
+		<script type="text/javascript">
+			var canvas;
+			var context;
+			var talkBok = false;// Estado em que a caixa de dialogos esta aparecendo.
+			var music = document.createElement('audio');// Cria um elemento de audio, o qual será a musica de fundo.
+
+			var back = new Image();// background = fundo
+			var backX = 0;// Posição X do fundo
+			var backY = 0;// Posição Y do fundo
+			var backW = 501;// Largura da img do Trolinho
+			var backH = 224;// Altura da img do Trolinho
+
+			var troll = new Image();// Trolinho
+			var trollX = 0;// Posição X do Trolinho
+    		var trollY = 120;// Posição Y do Trolinho
+			var trollW = 38;// Largura da img do Trolinho
+			var trollH = 55;// Altura da img do Trolinho
+
+			var door1 = new Image();// Porta1
+			var door2 = new Image();// Porta2
+			var doorW = 48;// Largura da img de todas as Portas
+			var doorH = 92;// Altura da img de todas as Portas
+			var doorY = 82;// Posição Y de todas as Portas
+    		var doorX1 = 11;// Posição X da Porta1
+			var doorX2 = 194;// Posição X da Porta2
+
+			function canvasUGSGame()
+			{
+				canvas = document.getElementById("myCanvas");
+				if (canvas.getContext)
+				{
+					music.setAttribute('src', 'ESG8bit.mp3');// Seleciona a musica no arquivo.
+					
+					context = canvas.getContext("2d");
+					back.src = 'fundo1.png';// Seleciona img no arquivo para o fundo.
+					context.drawImage(back,backX,backY);// Imprime na tela a img o fundo. drawImage(img,posiçãoX,posiçãoY)
+					door1.src = 'porta.png';// Seleciona img no arquivo para a Porta1.
+					context.drawImage(door1,doorX1,doorY);// Imprime na tela a img da Porta1.
+					door2.src = 'porta.png';// Seleciona img no arquivo para a Porta2.
+					context.drawImage(door2,doorX2,doorY);// Imprime na tela a img da Porta2.
+					troll.src = 'Trollleft.png';// Seleciona img no arquivo para o Trolinho.
+					context.drawImage(troll,trollX,trollY);// Imprime na tela a img do Trolinho.
+				}
+				gameLoop = setInterval(doGameLoop, 10);// setInterval(event,time) - ativará o evento a cada intervalo de tempo(em milisegundos). - só usa-lo uma vez 
+				boxOff = setInterval(putBoxOff, 1000);
+				playMusic = setInterval(startMusic, music.duration);
+				window.addEventListener('keydown', keyboard, true); // irá ficar conferindo se o evento é executado, caso seja executa a função
+			}
+
+			function doGameLoop()// Reconstroi a tela no estado atual, ele imprimi tudo por cima do antigo.
+			{
+				context.drawImage(back,backX,backY);
+				context.drawImage(door1,doorX1,doorY);
+				context.drawImage(door2,doorX2,doorY);
+				context.drawImage(troll,trollX,trollY);
+				if (talkBok)// Imprimirá a caixa de dialogos caso ela esteja ON.
+				{
+					context.rect(130,28,245,30);
+					context.stroke();
+					context.font="20px Arial";
+					context.fillText("Esta porta esta trancada.",140,50);
+				}
+			}
+			
+			function saveGame()
+			{
+				localStorage.setItem('trollX', trollX);
+				localStorage.setItem('trollY', trollY);
+			}
+			
+			function loadGame()
+			{
+				trollX = localStorage.getItem('trollX');
+				trollY = localStorage.getItem('trollY');
+			}
+			
+			function deletGame()
+			{
+				localStorage.clear();
+			}
+			
+			function startMusic()
+			{
+				music.play();
+			}
+			
+			function putBoxOff()// Desliga a caixa de dialogos.
+			{
+				talkBok = false;
+			}
+			
+			function colisao(posiçao1, posiçao2)// Confere se a posiçãoX do Tolinho e das Portas estão em contato.
+			{
+				if (posiçao1 + trollW < posiçao2)
+				{
+					return false;
+				}
+				else if (posiçao1 > posiçao2 + doorW)
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			function keyboard(event)// Realiza todas as atividades relacionadas ao teclado.
+			{
+				switch (event.keyCode)// Confere qual tecla é usada, tranformando-a em um numero da Tabela ASCII.
+				{
+					case 39:// Right arrow - Anda para a direita
+						troll.src = 'Trollleft.png';
+						trollX = trollX + 3;
+						if (trollX > 465)
+						{
+							trollX = 465;
+						}
+						break;
+					case 37:// Left arrow - Anda para a esquerda
+						troll.src = 'Trollright.png';
+						trollX = trollX - 3;
+						if (trollX < 0)
+						{
+							trollX = 0;
+						}
+						break;
+					case 38:// Up arrow - Anda para cima
+						trollY = trollY - 25;
+						if (trollY < 120)
+						{
+							trollY = 120;
+						}
+						break;
+					case 40:// Down arrow - Anda para baixo
+						trollY = trollY + 25;
+						if (trollY > 170)
+						{
+							trollY = 170;
+						}
+						break;
+					case 32:// Space key - Interage com outros objetos
+						if (colisao(trollX,doorX1) || colisao(trollX,doorX2))
+						{
+							talkBok = true;
+						}
+						break;
+				}
+			}
+			
+			function myFunction()
+			{
+				document.write("ERRO 404 PÁGINA NÃO ENCONTRADA!");
+			}
+		</script>
+	</head>
+	<body onload="canvasUGSGame()">
+	
+		<section>
+			<header>
+				<h1> 
+					Ultimate Game School - O JOGO
+				</h1>
+			</header>
+
+			<article>
+			<p>
+				<canvas id="myCanvas" width="501" height="224"></canvas>
+				<button onclick="saveGame()">Save</button>
+				<button onclick="loadGame()">Load</button>
+				<button onclick="deletGame()">Delet</button>
+				<div align= "left"></div>
+				<button onclick="myFunction()">Proxima página >></button>
+			</p>
+			</article>
+		</section>
+		
+		<FORM>
+		<p>Mude a cor do plano de fundo!</p>
+			<INPUT type="button" value="Mudar o fundo para Amarelo!" name="button1" onClick="document.bgColor='#FFFF75'"> <br>
+			<INPUT type="button" value="Mudar o fundo para Azul!" name="button2" onClick="document.bgColor='#47A3FF'"> <br>
+			<INPUT type="button" value="Mudar o fundo para Vermelho!" name="button3" onClick="document.bgColor='#FF3030'"> <br>
+			<INPUT type="button" value="Mudar o fundo para Verde!" name="button4" onClick="document.bgColor='#00B800'"> <br>
+			<INPUT type="button" value="Voltar ao Normal!" name="button5" onClick="document.bgColor='white'">
+		</FORM>
+		
+	</body>
+</html>
